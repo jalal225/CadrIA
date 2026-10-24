@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import LogoutButton from '@/components/auth/LogoutButton';
 
 type TabType = 'resultats' | 'compte' | 'historique' | 'actions';
 
@@ -24,12 +25,16 @@ export default function SaasPage() {
             <h1 className="text-3xl font-bold text-white">CadrIA</h1>
             <p className="text-slate-400 text-sm">Dashboard de conformité IA</p>
           </div>
-          <Link
-            href="/"
-            className="text-slate-300 hover:text-white transition-colors"
-          >
-            ← Retour à l'accueil
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="text-slate-300 hover:text-white transition-colors"
+            >
+              ← Retour à l'accueil
+            </Link>
+            <div className="w-px h-6 bg-slate-700"></div>
+            <LogoutButton />
+          </div>
         </div>
       </header>
 
