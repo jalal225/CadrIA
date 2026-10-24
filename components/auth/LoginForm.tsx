@@ -42,9 +42,15 @@ export default function LoginForm() {
         throw new Error(result.message || 'Erreur lors de la connexion');
       }
 
+      console.log('Login response:', result);
+
       // Store session in localStorage
       if (result.session) {
+        console.log('Storing session:', result.session);
         localStorage.setItem('cadria_session', JSON.stringify(result.session));
+        console.log('Session stored, navigating to /saas');
+      } else {
+        console.log('No session in response!');
       }
 
       router.push('/saas');
@@ -106,10 +112,6 @@ export default function LoginForm() {
       >
         {isLoading ? 'Connexion en cours...' : 'Se connecter'}
       </button>
-
-      <p className="text-center text-slate-400 text-sm">
-        Pas encore inscrit ? <Link href="/signup" className="text-blue-400 hover:text-blue-300">S'inscrire</Link>
-      </p>
     </form>
   );
 }
