@@ -4,11 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import LogoutButton from '@/components/auth/LogoutButton';
 import { useProtectedRoute } from '@/lib/useAuth';
+import { usePremium } from '@/lib/usePremium';
 
 type TabType = 'resultats' | 'compte' | 'historique' | 'actions';
 
 export default function SaasPage() {
   const { session, isLoading } = useProtectedRoute();
+  const { isPremium } = usePremium();
   const [activeTab, setActiveTab] = useState<TabType>('resultats');
 
   if (isLoading) {
@@ -36,7 +38,14 @@ export default function SaasPage() {
       <header className="border-b border-slate-700 bg-slate-900/50">
         <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-white">CadrIA</h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold text-white">CadrIA</h1>
+              {isPremium && (
+                <span className="px-3 py-1 bg-purple-600/20 border border-purple-500 text-purple-400 text-xs font-semibold rounded-full">
+                  ✨ Premium
+                </span>
+              )}
+            </div>
             <p className="text-slate-400 text-sm">Dashboard de conformité IA</p>
           </div>
           <div className="flex items-center gap-4">
