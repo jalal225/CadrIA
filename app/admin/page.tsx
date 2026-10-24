@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import LogoutButton from '@/components/auth/LogoutButton';
+import { useProtectedRoute } from '@/lib/useAuth';
 
 interface Diagnostic {
   id: string;
@@ -54,8 +55,21 @@ const MOCK_DIAGNOSTICS: Diagnostic[] = [
 ];
 
 export default function AdminPage() {
+  const { session, isLoading } = useProtectedRoute();
   const [searchEmail, setSearchEmail] = useState('');
   const [selectedDiagnostic, setSelectedDiagnostic] = useState<Diagnostic | null>(null);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <p className="text-white">Chargement...</p>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return null;
+  }
 
   const filteredDiagnostics = MOCK_DIAGNOSTICS.filter((d) =>
     d.email.toLowerCase().includes(searchEmail.toLowerCase())

@@ -42,6 +42,11 @@ export default function LoginForm() {
         throw new Error(result.message || 'Erreur lors de la connexion');
       }
 
+      // Store session in localStorage
+      if (result.session) {
+        localStorage.setItem('cadria_session', JSON.stringify(result.session));
+      }
+
       router.push('/saas');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur inconnue');

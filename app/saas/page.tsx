@@ -3,11 +3,25 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import LogoutButton from '@/components/auth/LogoutButton';
+import { useProtectedRoute } from '@/lib/useAuth';
 
 type TabType = 'resultats' | 'compte' | 'historique' | 'actions';
 
 export default function SaasPage() {
+  const { session, isLoading } = useProtectedRoute();
   const [activeTab, setActiveTab] = useState<TabType>('resultats');
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <p className="text-white">Chargement...</p>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return null;
+  }
 
   const tabs = [
     { id: 'resultats', label: 'Résultats du diagnostic', icon: '📊' },

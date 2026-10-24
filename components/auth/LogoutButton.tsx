@@ -10,13 +10,14 @@ export default function LogoutButton() {
   const handleLogout = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/auth/logout', {
+      await fetch('/api/auth/logout', {
         method: 'POST',
       });
 
-      if (response.ok) {
-        router.push('/');
-      }
+      // Clear session from localStorage
+      localStorage.removeItem('cadria_session');
+
+      router.push('/');
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
