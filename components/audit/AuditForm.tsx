@@ -191,6 +191,28 @@ export default function AuditForm() {
       });
 
       if (response.ok) {
+        // Send email with diagnostic report
+        try {
+          const emailResponse = await fetch('/api/email/send-diagnostic', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: formData.section1?.email,
+              prenom: formData.section1?.prenom,
+              nom: formData.section1?.nom,
+              secteur: formData.section4?.secteur,
+              score: 75, // TODO: Calculate actual score based on responses
+            }),
+          });
+
+          if (!emailResponse.ok) {
+            console.error('Failed to send email');
+            // Don't block user - email failure is not critical
+          }
+        } catch (emailError) {
+          console.error('Error sending email:', emailError);
+        }
+
         // Success - redirect to merci page
         console.log('Diagnostic submitted successfully');
         router.push('/merci');
