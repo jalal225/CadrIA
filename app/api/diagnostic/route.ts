@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { NextRequest, NextResponse } from 'next/server';
+import { supabase } from '@/lib/db';
 
 const DiagnosticSchema = z.object({
   prenom: z.string().min(1, 'Prénom requis'),
@@ -36,11 +37,27 @@ export async function POST(request: NextRequest) {
     // Validate with Zod
     const validatedData: DiagnosticData = DiagnosticSchema.parse(body);
 
-    // TODO: Save to Supabase (fix network connectivity first)
-    // For now, just validate and return success
-    console.log('Diagnostic validated:', {
+    // Save to Supabase audits table
+    const { error } = await supabase.from('audits').insert([
+      {
+        email: validatedData.email,
+        prenom: validatedData.prenom,
+        nom: validatedData.nom,
+        secteur: validatedData.secteur,
+        outils_ia: validatedData.outils_ia,
+        donnees_sensibles: validatedData.donnees_sensibles,
+        score: 75, // TODO: Calculate actual score
+        status: 'completed',
+      },
+    ]);
+
+    if (error) {
+      console.error('Error saving audit:', error);
+      // Don't block submission if DB save fails
+    }
+
+    console.log('Diagnostic saved:', {
       email: validatedData.email,
-      effectif: validatedData.effectif,
       secteur: validatedData.secteur,
     });
 

@@ -1,10 +1,16 @@
-import { mockSignOut } from '@/lib/auth-mock';
+import { supabase } from '@/lib/db';
 
 export async function POST() {
   try {
-    // Sign out with mock auth (localStorage)
-    // TODO: Replace with Supabase Auth when connection is fixed
-    mockSignOut();
+    // Sign out with Supabase Auth
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      return Response.json(
+        { message: error.message },
+        { status: 400 }
+      );
+    }
 
     return Response.json({
       message: 'Déconnexion réussie',

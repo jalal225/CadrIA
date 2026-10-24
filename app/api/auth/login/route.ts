@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { mockSignIn } from '@/lib/auth-mock';
+import { supabase } from '@/lib/db';
 
 const LoginSchema = z.object({
   email: z.string().email(),
@@ -11,14 +11,23 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { email, password } = LoginSchema.parse(body);
 
-    // Sign in with mock auth (localStorage)
-    // TODO: Replace with Supabase Auth when connection is fixed
-    const { user, session } = mockSignIn(email, password);
+    // Sign in with Supabase Auth
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      return Response.json(
+        { message: 'Email ou mot de passe incorrect' },
+        { status: 401 }
+      );
+    }
 
     return Response.json({
       message: 'Connexion réussie',
-      user,
-      session,
+      user: data.user,
+      session: data.session,
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
