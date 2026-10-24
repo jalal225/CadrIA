@@ -1,8 +1,5 @@
-// Mock authentication using localStorage
+// Mock authentication using in-memory storage
 // TODO: Replace with Supabase Auth when connection is fixed
-
-const USERS_KEY = 'cadria_users';
-const SESSION_KEY = 'cadria_session';
 
 interface User {
   id: string;
@@ -16,13 +13,12 @@ interface Session {
   accessToken: string;
 }
 
-export function mockSignUp(email: string, password: string, prenom: string, nom: string) {
-  // Get existing users from localStorage
-  const usersJson = localStorage.getItem(USERS_KEY) || '{}';
-  const users = JSON.parse(usersJson);
+// In-memory storage (server-side only)
+const mockUsers = new Map<string, { user: User; password: string }>();
 
+export function mockSignUp(email: string, password: string, prenom: string, nom: string) {
   // Check if user already exists
-  if (users[email]) {
+  if (mockUsers.has(email)) {
     throw new Error('Cet email est déjà utilisé');
   }
 
@@ -31,49 +27,41 @@ export function mockSignUp(email: string, password: string, prenom: string, nom:
   const user: User = { id: userId, email, prenom, nom };
 
   // Store user with password (NOT secure - mock only!)
-  users[email] = { ...user, password };
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  mockUsers.set(email, { user, password });
 
   return { user };
 }
 
 export function mockSignIn(email: string, password: string) {
-  const usersJson = localStorage.getItem(USERS_KEY) || '{}';
-  const users = JSON.parse(usersJson);
-
-  const userData = users[email];
+  const userData = mockUsers.get(email);
   if (!userData || userData.password !== password) {
     throw new Error('Email ou mot de passe incorrect');
   }
 
   // Create session
   const accessToken = `token_${Date.now()}`;
-  const user: User = {
-    id: userData.id,
-    email: userData.email,
-    prenom: userData.prenom,
-    nom: userData.nom,
-  };
-
+  const user = userData.user;
   const session: Session = { user, accessToken };
-  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
 
   return { user, session };
 }
 
 export function mockSignOut() {
-  localStorage.removeItem(SESSION_KEY);
+  // For mock, just return success (session is client-side only)
 }
 
-export function mockGetSession() {
-  const sessionJson = localStorage.getItem(SESSION_KEY);
-  if (!sessionJson) {
+export function mockGetSession(sessionData?: string) {
+  if (!sessionData) {
     return null;
   }
-  return JSON.parse(sessionJson) as Session;
+  try {
+    return JSON.parse(sessionData) as Session;
+  } catch {
+    return null;
+  }
 }
 
-export function mockGetUser() {
-  const session = mockGetSession();
+export function mockGetUser(sessionData?: string) {
+  const session = mockGetSession(sessionData);
   return session?.user || null;
 }
