@@ -1,25 +1,18 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 
 export async function middleware(request: NextRequest) {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-  const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-  // Get session from cookies (set by Supabase Auth)
-  const { data: { session } } = await supabase.auth.getSession();
+  // Check session in cookies (set by client-side auth)
+  const sessionCookie = request.cookies.get('cadria_session')?.value;
 
   // Protect /saas and /admin routes
   if ((request.nextUrl.pathname.startsWith('/saas') ||
        request.nextUrl.pathname.startsWith('/admin')) &&
-      !session) {
+      !sessionCookie) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  // Redirect /admin access to non-admins (TODO: implement admin check)
+  // TODO: Implement admin role check when profiles table is available
   // For now, allow all authenticated users to /admin
-  // In production, check user.metadata.role === 'admin'
 
   return NextResponse.next();
 }
