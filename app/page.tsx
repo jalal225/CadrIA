@@ -42,10 +42,10 @@ export default function Home() {
             Audit IA Gratuit
           </Link>
           <Link
-            href="/login"
+            href="/pricing"
             className="px-8 py-4 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-colors"
           >
-            Mon Dashboard
+            Voir les plans
           </Link>
         </div>
 
