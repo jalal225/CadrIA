@@ -9,26 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
+    "@supabase/supabase-js": "^2.38.0",
+    "framer-motion": "^11.0.0",
+    "next": "^16.4.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "next": "16.0.0",
-    "@supabase/supabase-js": "^2.38.0",
-    "@hookform/resolvers": "^3.3.4",
     "react-hook-form": "^7.48.0",
-    "zod": "^3.22.4",
+    "stripe": "^13.10.0",
     "tailwindcss": "4.0.0",
-    "framer-motion": "^11.0.0",
-    "stripe": "^13.10.0"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "typescript": "^5.3.3",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.16",
     "eslint": "^9.0.0",
     "eslint-config-next": "16.0.0",
     "postcss": "^8.4.32",
-    "autoprefixer": "^10.4.16",
-    "@tailwindcss/postcss": "^4.0.0"
+    "typescript": "^5.3.3"
   }
 }
