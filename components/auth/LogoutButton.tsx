@@ -15,7 +15,7 @@ export default function LogoutButton() {
       });
 
       // Clear session from localStorage
-      localStorage.removeItem('cadria_session');
+      localStorage.removeItem('session');
 
       router.push('/');
     } catch (error) {

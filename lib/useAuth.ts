@@ -19,12 +19,12 @@ export function useAuth() {
 
   useEffect(() => {
     // Check localStorage for session
-    const sessionJson = localStorage.getItem('cadria_session');
+    const sessionJson = localStorage.getItem('session');
     if (sessionJson) {
       try {
         setSession(JSON.parse(sessionJson));
       } catch {
-        localStorage.removeItem('cadria_session');
+        localStorage.removeItem('session');
       }
     }
     setIsLoading(false);

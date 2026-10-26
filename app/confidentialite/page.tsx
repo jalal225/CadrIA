@@ -5,7 +5,7 @@ export default function ConfidentialitePage() {
       <header className="border-b border-slate-700 bg-slate-900/50">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-white">Politique de confidentialité</h1>
-          <p className="text-slate-400 mt-2">CadrIA - Protection de vos données personnelles</p>
+          <p className="text-slate-400 mt-2">Solveria - Protection de vos données personnelles</p>
         </div>
       </header>
 
@@ -17,10 +17,10 @@ export default function ConfidentialitePage() {
             <h2 className="text-2xl font-bold text-white mb-4">Introduction</h2>
             <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 text-slate-300">
               <p>
-                CadrIA respecte votre vie privée et s'engage à protéger vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations.
+                Solveria respecte votre vie privée et s'engage à protéger vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations.
               </p>
               <p className="mt-3">
-                Cette politique s'applique à tous les services fournis par CadrIA, y compris notre plateforme de diagnostic IA et notre dashboard.
+                Cette politique s'applique à tous les services fournis par Solveria, y compris notre plateforme de diagnostic IA et notre dashboard.
               </p>
             </div>
           </section>
@@ -163,7 +163,7 @@ export default function ConfidentialitePage() {
             <h2 className="text-2xl font-bold text-white mb-4">8. Cookies</h2>
             <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 text-slate-300 space-y-3">
               <p>
-                CadrIA utilise des cookies pour :
+                Solveria utilise des cookies pour :
               </p>
               <ul className="list-disc list-inside space-y-2 text-sm">
                 <li>Analyser l'utilisation du site (Google Analytics)</li>

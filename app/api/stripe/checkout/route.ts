@@ -7,32 +7,53 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 const CheckoutSchema = z.object({
-  planId: z.enum(['free', 'premium']),
+  planId: z.enum(['free', 'basic', 'premium']),
 });
+
+const PLAN_PRICES = {
+  free: 0,
+  basic: 4900, // 49€ in cents
+  premium: 14900, // 149€ in cents
+};
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { planId } = CheckoutSchema.parse(body);
 
-    // Only premium requires payment
-    if (planId !== 'premium') {
+    // Only paid plans require payment
+    if (planId === 'free') {
       return Response.json(
         { message: 'Plan invalide pour le paiement' },
         { status: 400 }
       );
     }
 
-    // Check if user is authenticated
-    const { data: { session } } = await supabase.auth.getSession();
-
-    if (!session) {
+    // Check if user is authenticated (mock session from header)
+    const sessionHeader = request.headers.get('X-Session');
+    if (!sessionHeader) {
       return Response.json({ requireAuth: true });
     }
 
-    const user = session.user;
+    let user;
+    try {
+      const sessionData = JSON.parse(sessionHeader);
+      user = sessionData.user || { id: sessionData.id, email: sessionData.email };
+    } catch {
+      return Response.json({ requireAuth: true });
+    }
 
     // Create Stripe checkout session
+    const planNames = {
+      basic: 'Solveria Basic - Abonnement mensuel',
+      premium: 'Solveria Premium - Abonnement mensuel',
+    };
+
+    const planDescriptions = {
+      basic: 'Conformité IA essentiels pour PME',
+      premium: 'Conformité IA complète avec support prioritaire',
+    };
+
     const checkoutSession = await stripe.checkout.sessions.create({
       customer_email: user.email,
       client_reference_id: user.id,
@@ -42,10 +63,10 @@ export async function POST(request: Request) {
           price_data: {
             currency: 'eur',
             product_data: {
-              name: 'CadrIA Premium - Abonnement mensuel',
-              description: 'Accès complet au dashboard, rapports illimités, veille documentaire',
+              name: planNames[planId as keyof typeof planNames],
+              description: planDescriptions[planId as keyof typeof planDescriptions],
             },
-            unit_amount: 9900, // 99€ en cents
+            unit_amount: PLAN_PRICES[planId as keyof typeof PLAN_PRICES],
             recurring: {
               interval: 'month',
               interval_count: 1,

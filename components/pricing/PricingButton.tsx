@@ -9,9 +9,18 @@ interface PricingButtonProps {
 export default function PricingButton({ planId, label, highlighted }: PricingButtonProps) {
   const handleSubscribe = async () => {
     try {
+      const session = localStorage.getItem('session');
+      if (!session) {
+        window.location.href = '/login';
+        return;
+      }
+
       const response = await fetch('/api/stripe/checkout', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session': session,
+        },
         body: JSON.stringify({ planId }),
       });
 

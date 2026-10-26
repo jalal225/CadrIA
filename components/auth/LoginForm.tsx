@@ -42,18 +42,15 @@ export default function LoginForm() {
         throw new Error(result.message || 'Erreur lors de la connexion');
       }
 
-      console.log('Login response:', result);
-
-      // Store session in localStorage
-      if (result.session) {
-        console.log('Storing session:', result.session);
-        localStorage.setItem('cadria_session', JSON.stringify(result.session));
-        console.log('Session stored, navigating to /saas');
-      } else {
-        console.log('No session in response!');
+      // Store full session in localStorage (including user)
+      if (result.user) {
+        localStorage.setItem('session', JSON.stringify({
+          user: result.user,
+          session: result.session,
+        }));
       }
 
-      router.push('/saas');
+      router.push('/pricing');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur inconnue');
     } finally {

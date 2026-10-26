@@ -7,7 +7,7 @@ export default function SignupPage() {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">CadrIA</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Solveria</h1>
           <p className="text-slate-400">Créer un compte</p>
         </div>
 

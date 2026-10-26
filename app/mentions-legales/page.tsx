@@ -5,7 +5,7 @@ export default function MentionsLegalesPage() {
       <header className="border-b border-slate-700 bg-slate-900/50">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-white">Mentions légales</h1>
-          <p className="text-slate-400 mt-2">CadrIA - Conformité IA pour TPE-PME</p>
+          <p className="text-slate-400 mt-2">Solveria - Conformité IA pour TPE-PME</p>
         </div>
       </header>
 
@@ -16,7 +16,7 @@ export default function MentionsLegalesPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">1. Informations légales</h2>
             <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 space-y-3 text-slate-300">
-              <p><strong className="text-white">Nom du service :</strong> CadrIA</p>
+              <p><strong className="text-white">Nom du service :</strong> Solveria</p>
               <p><strong className="text-white">Statut :</strong> Service en ligne de diagnostic et audit de conformité IA</p>
               <p><strong className="text-white">Responsable :</strong> Jalal Seferdjeli</p>
               <p><strong className="text-white">Email :</strong> d.jale@yahoo.fr</p>
@@ -29,7 +29,7 @@ export default function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-white mb-4">2. Conditions d'utilisation</h2>
             <div className="space-y-4 text-slate-300">
               <p>
-                En accédant et en utilisant CadrIA, vous acceptez de respecter l'intégralité de ces conditions d'utilisation.
+                En accédant et en utilisant Solveria, vous acceptez de respecter l'intégralité de ces conditions d'utilisation.
               </p>
               <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
                 <h3 className="text-white font-semibold mb-2">2.1 Utilisation acceptable</h3>
@@ -48,7 +48,7 @@ export default function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-white mb-4">3. Propriété intellectuelle</h2>
             <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 text-slate-300 space-y-3">
               <p>
-                Tous les contenus du site CadrIA (textes, images, logos, structures, codes, etc.) sont protégés par les droits d'auteur et autres droits de propriété intellectuelle.
+                Tous les contenus du site Solveria (textes, images, logos, structures, codes, etc.) sont protégés par les droits d'auteur et autres droits de propriété intellectuelle.
               </p>
               <p>
                 Vous ne pouvez pas reproduire, modifier, distribuer ou exploiter ces contenus sans autorisation explicite.
@@ -61,10 +61,10 @@ export default function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-white mb-4">4. Limitation de responsabilité</h2>
             <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 text-slate-300 space-y-3">
               <p>
-                <strong className="text-white">Important :</strong> Les diagnostics et recommandations fournis par CadrIA sont des <strong>informations et aides à la mise en œuvre</strong>, et non des conseils juridiques.
+                <strong className="text-white">Important :</strong> Les diagnostics et recommandations fournis par Solveria sont des <strong>informations et aides à la mise en œuvre</strong>, et non des conseils juridiques.
               </p>
               <p>
-                CadrIA ne peut être tenu responsable :
+                Solveria ne peut être tenu responsable :
               </p>
               <ul className="list-disc list-inside space-y-2 text-sm">
                 <li>Des erreurs ou imprécisions dans les diagnostics</li>
@@ -96,7 +96,7 @@ export default function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-white mb-4">6. Liens externes</h2>
             <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 text-slate-300 space-y-3">
               <p>
-                CadrIA ne peut être tenu responsable des contenus de sites externes vers lesquels nous créons des liens.
+                Solveria ne peut être tenu responsable des contenus de sites externes vers lesquels nous créons des liens.
               </p>
               <p>
                 L'accès à ces sites se fait sous votre propre responsabilité.

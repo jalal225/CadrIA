@@ -20,20 +20,39 @@ export default function PricingPage() {
       highlighted: false,
     },
     {
-      id: 'premium',
-      name: 'Premium',
-      price: '99',
+      id: 'basic',
+      name: 'Basic',
+      price: '49',
       period: 'mois',
-      description: 'Conformité IA complète et veille continue',
+      description: 'Conformité IA essentiels pour PME',
       features: [
         'Tous les avantages de l\'audit gratuit',
         'Accès complet au dashboard',
-        'Rapports illimités',
+        'Rapports mensuels',
         'Veille documentaire (mise à jour légale IA)',
-        'Mise à jour automatique de vos documents',
-        'Support prioritaire',
+        'Mise à jour des documents (2x/mois)',
+        'Support email',
+        'Export PDF des diagnostics',
+      ],
+      cta: 'Commencer l\'essai',
+      highlighted: false,
+      requireAuth: true,
+    },
+    {
+      id: 'premium',
+      name: 'Premium',
+      price: '149',
+      period: 'mois',
+      description: 'Conformité IA complète avec support prioritaire',
+      features: [
+        'Tous les avantages du plan Basic',
+        'Rapports illimités',
+        'Mise à jour automatique continues des documents',
+        'Support prioritaire (chat + téléphone)',
         'Audit présentiel annuel',
-        'Export PDF/CSV des diagnostics',
+        'Export PDF/CSV + intégration API',
+        'Formation équipe (2h/trimestre)',
+        'Assistance juridique prioritaire',
       ],
       cta: 'Commencer l\'essai',
       highlighted: true,
@@ -46,7 +65,7 @@ export default function PricingPage() {
       {/* Header */}
       <header className="border-b border-slate-700 bg-slate-900/50">
         <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-white">CadrIA</h1>
+          <h1 className="text-3xl font-bold text-white">Solveria</h1>
           <Link href="/" className="text-slate-300 hover:text-white transition-colors">
             ← Retour
           </Link>

@@ -39,7 +39,7 @@ export default function SaasPage() {
         <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-3xl font-bold text-white">CadrIA</h1>
+              <h1 className="text-3xl font-bold text-white">Solveria</h1>
               {isPremium && (
                 <span className="px-3 py-1 bg-purple-600/20 border border-purple-500 text-purple-400 text-xs font-semibold rounded-full">
                   ✨ Premium

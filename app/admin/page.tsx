@@ -96,7 +96,7 @@ export default function AdminPage() {
       <header className="border-b border-slate-700 bg-slate-900/50">
         <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-white">CadrIA Admin</h1>
+            <h1 className="text-3xl font-bold text-white">Solveria Admin</h1>
             <p className="text-slate-400 text-sm">Gestion des diagnostics</p>
           </div>
           <div className="flex items-center gap-4">

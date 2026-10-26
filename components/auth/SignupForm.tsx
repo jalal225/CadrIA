@@ -50,7 +50,15 @@ export default function SignupForm() {
         throw new Error(result.message || 'Erreur lors de l\'inscription');
       }
 
-      router.push('/login?success=true');
+      // Save session to localStorage
+      if (result.user) {
+        localStorage.setItem('session', JSON.stringify({
+          user: result.user,
+          session: result.session,
+        }));
+      }
+
+      router.push('/pricing');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur inconnue');
     } finally {

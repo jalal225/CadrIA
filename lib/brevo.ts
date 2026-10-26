@@ -23,7 +23,7 @@ export async function sendDiagnosticEmail({
   const emailContent = `
 Bonjour ${prenom},
 
-Merci d'avoir réalisé le diagnostic de conformité IA de CadrIA !
+Merci d'avoir réalisé le diagnostic de conformité IA de Solveria !
 
 Voici votre score : ${score}%
 
@@ -37,7 +37,7 @@ Pour accéder à votre dashboard et voir vos rapports complets, veuillez vous co
 https://localhost:3000/login
 
 Cordialement,
-L'équipe CadrIA
+L'équipe Solveria
   `.trim();
 
   try {
@@ -49,7 +49,7 @@ L'équipe CadrIA
       },
       body: JSON.stringify({
         sender: {
-          name: 'CadrIA',
+          name: 'Solveria',
           email: 'd.jale@yahoo.fr',
         },
         to: [
@@ -58,12 +58,12 @@ L'équipe CadrIA
             name: `${prenom} ${nom}`,
           },
         ],
-        subject: 'Votre diagnostic de conformité IA - CadrIA',
+        subject: 'Votre diagnostic de conformité IA - Solveria',
         htmlContent: `
           <html>
             <body style="font-family: Arial, sans-serif; color: #333;">
               <h2>Bonjour ${prenom},</h2>
-              <p>Merci d'avoir réalisé le diagnostic de conformité IA de CadrIA !</p>
+              <p>Merci d'avoir réalisé le diagnostic de conformité IA de Solveria !</p>
 
               <div style="background: #f0f0f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <p><strong>Votre score :</strong> <span style="font-size: 32px; color: #0066cc;">${score}%</span></p>
@@ -81,7 +81,7 @@ L'équipe CadrIA
               <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
               <p style="font-size: 12px; color: #666;">
                 Cordialement,<br>
-                L'équipe CadrIA
+                L'équipe Solveria
               </p>
             </body>
           </html>

@@ -1,6 +1,6 @@
 export const BRAND = {
-  name: 'CadrIA',
-  displayName: 'CadrIA',
+  name: 'Solveria',
+  displayName: 'Solveria',
   tagline: 'Votre IA, installée et en règle.',
   url: process.env.NEXT_PUBLIC_APP_URL || 'https://ia.fr',
   email: 'contact@ia.fr',

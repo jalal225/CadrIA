@@ -586,7 +586,7 @@ export default function AuditForm() {
                   className="w-5 h-5 mt-1 rounded bg-slate-700 border border-slate-600 text-blue-600 focus:ring-blue-500 cursor-pointer"
                 />
                 <span className="text-white">
-                  CadrIA peut utiliser mon email pour m'envoyer le rapport et des informations
+                  Solveria peut utiliser mon email pour m'envoyer le rapport et des informations
                   <span className="text-red-400">*</span>
                 </span>
               </label>
@@ -649,7 +649,7 @@ export default function AuditForm() {
                   className="w-5 h-5 mt-1 rounded bg-slate-700 border border-slate-600 text-blue-600 focus:ring-blue-500 cursor-pointer"
                 />
                 <span className="text-slate-300">
-                  J'accepte de recevoir occasionnellement des informations de CadrIA
+                  J'accepte de recevoir occasionnellement des informations de Solveria
                 </span>
               </label>
             </div>
